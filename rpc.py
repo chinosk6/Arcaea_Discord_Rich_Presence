@@ -45,7 +45,7 @@ def update_loop(lang):
         while True:
             rpc_data = update_stat.start(lang)
             if(rpc_data['details'] == "Device"):
-                det = model
+                det = model.replace('\n', '')
             else:
                 det = "Score:" + rpc_data['details']
 
@@ -57,7 +57,7 @@ def update_loop(lang):
                                  details = det,
                                  #buttons = rpc_data['buttons'],
                                  start = start_time)
-            print("状态已更新:" + rpc_data['state'])
+            print("状态已更新:" + det + ' - ' + rpc_data['state'])
             time.sleep(5)
     except Exception as sb:
         print(sb)
